@@ -1,0 +1,144 @@
+<resources>
+    <string name="app_name">AshuDiHatti</string>
+    <string name="title_activity_home">home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!--  login  -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forget_password">FORGET PASSWORD</string>
+    <string name="login">Log-In</string>
+    <string name="skip">Skip-Login</string>
+    <string name="register">Register-Here</string>
+
+    <!--  register  <-->
+    <string name="name">Full-Name</string>
+    <string name="number">Phone_Number</string>
+    <string name="confirm_passwrod">Confirm-Password</string>
+    <string name="signup">Sign-Up</string>
+    <string name="otp">Enter One-Time OTP</string>
+    <string name="resend">Send Again</string>
+    <string name="login_here">Login-Here</string>
+
+    <!--  categories  -->
+    <string name="footwear">Footwear</string>
+    <string name="clothing">Clothing</string>
+    <string name="face">Face</string>
+    <string name="moisturizer">Moisturizer</string>
+    <string name="accessories">Accessories</string>
+    <string name="home_furnishing">Home Furnishing</string>
+
+    <!--drawer-->
+    <string name="menu_home">Home</string>
+    <string name="menu_product">Categories</string>
+    <string name="menu_order">Your Orders</string>
+    <string name="menu_fb">FB Live</string>
+    <string name="menu_notification">Your Notifications</string>
+    <string name="menu_logout">Log-out</string>
+    <string name="settings">Settings</string>
+    <!--home-->
+    <string name="search">Search here..</string>
+    <string name="men_collection">Men Collections</string>
+    <string name="women_collection">Women Collections</string>
+    <string name="handlooms_collection">Handloom Collections</string>
+    <string name="shop_now">Shop Now</string>
+    <string name="men">Men</string>
+    <string name="women">Women</string>
+    <string name="cosmetic">Cosmetic</string>
+    <string name="handloom">Handloom </string>
+    <string name="weekly_deal">Deals of the week</string>
+    <string name="new_arrivals">New Arrivals</string>
+    <string name="best_sellers">Best Sellers</string>
+    <string name="you_may_like">You May Like</string>
+    <string name="categories">Top Categories</string>
+    <string name="view_all">View All</string>
+    <!--cart-->
+    <string name="cart">Cart</string>
+    <string name="cart_empty">Your Cart is Empty</string>
+    <string name="view_product">View Product</string>
+    <!--order-->
+    <string name="order">Orders</string>
+    <!--notification-->
+    <string name="notification">Notification</string>
+    <!-- product_info   -->
+    <string name="product_info">Product_info</string>
+    <string name="item_show">1</string>
+    <string name="product_name">Product Name</string>
+    <string name="demo_price">14000</string>
+    <string name="price">.00</string>
+    <string name="about_product">Product Details</string>
+    <string name="product_specification">Product specification</string>
+    <string name="product_rating">Product Rating</string>
+    <string name="product_color">Product Color</string>
+    <string name="rating">4.5</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="view_cart">View Cart</string>
+    <!-- product   -->
+    <string name="product">Product</string>
+    <!--account-->
+    <string name="account">Account</string>
+    <string name="profile">Profile</string>
+    <string name="help">Help-Support</string>
+    <string name="update">Update</string>
+    <!--  Contact-Us  -->
+    <string name="contact_us">Contact-Us</string>
+    <string name="query">Post Your Query</string>
+    <string name="city">City</string>
+    <string name="enter_query">Enter Your Query</string>
+    <string name="submit">Submit</string>
+    <string name="location">Location</string>
+    <string name="call">Call</string>
+    <string name="mail">E-Mail</string>
+    <string name="find_location">Find Location</string>
+    <!--  manage_address  -->
+    <string name="country">Country</string>
+    <string name="state">State</string>
+    <string name="primary_address">Primary Address</string>
+    <string name="secondary_address">Secondary Address</string>
+    <string name="pin_code">Zip Code</string>
+    <string name="save_address">Save Address</string>
+    <!--  settings  -->
+    <string name="edit">Edit profile</string>
+    <string name="payment">Payment settings</string>
+    <string name="App_settings">App settings</string>
+    <string name="change_password">Change Password</string>
+    <string name="new_password">New Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="faqs">FAQs</string>
+    <string name="manage_address">Manage Address</string>
+    <string name="about_us">About_Us</string>
+    <string name="version">V0.0.1</string>
+    <string name="about">We are open throughout the week, so you don’t miss a chance to get that dream dress for any occasion. What’s more? We ship worldwide, so shout-out to all the desis out-there, stay close to your roots with Naveen Stores.</string>
+    <!--  faqs  -->
+    <string name="q1">What amount of time does the shipment order take to be delivered?</string>
+    <string name="a1">We make an honest effort to deliver your orders at the earliest opportunity. Processing and dispatching a package is usually done within 24 – 48 hours. Although, it also depends on your PIN code. However, we do specify a standard delivery date in the order confirmation mail.</string>
+    <string name="q2">How can I track my order?</string>
+    <string name="a2">You can easily track your orders through the Online Tracking Facility under “My Orders”.</string>
+    <string name="q3">What happens when a purchased product goes out of stock?</string>
+    <string name="a3">We try to keep stock of all products as listed on our website. In case a purchased product goes out of stock, we will inform the same to you within 2 working days of your purchase. Then you can either purchase some other product or your money will be duly refunded.</string>
+    <string name="q4">Can I place an order for different products for different shipment addresses in a single order?</string>
+    <string name="a4">No, we only process one shipping address per order. So, if you want to order multiple products and want them shipped to different addresses, they will be treated as separate orders.</string>
+    <string name="q5">What happens if no one is there to receive the package/shipment, at the address provided?</string>
+    <string name="a5">Our courier partners will make 3 delivery attempts at the address as specified by you. If no delivery is made in all these 3 attempts, the package will be considered non-delivered and then shipped back to us.</string>
+    <string name="q6">Do you deliver Internationally? What are the shipping charges for International Delivery?</string>
+    <string name="a6">Yes, we do have an option for International Delivery, and shipping charges for the same usually depend on the total bill and the shipping address. The final amount to be charged will be calculated at the final bill generation.</string>
+    <string name="q7">What is the estimated delivery time?</string>
+    <string name="a7">Our shipment usually takes 7-10 working days to be delivered. For international orders, the shipment can take 10-15 working days.
+
+    *The delivery time may vary as per the product and the PIN code</string>
+    <string name="q8">What modes of payments are available at Naveen Stores?</string>
+    <string name="a8">We offer multiple payment options, like Credit Card, Debit Card, Google Pay, UPI, Paytm, and Net Banking Facility.</string>
+    <string name="q9">Is Cash on Delivery available?</string>
+    <string name="a9">No</string>
+    <string name="q10">If I receive a faulty product, would that be replaced?</string>
+    <string name="a10">We only sell good quality products, but if in case you get a damaged product, we do have replacement options available.</string>
+    <string name="q11">What about your refund policy?</string>
+    <string name="a11">We do have a refund option available, but if and only if the product is faulty or damaged.</string>
+    <string name="q12">What about order cancellation?</string>
+    <string name="a12">We do have a provision of cancellation but it is only acceptable if the order gets canceled within 24 hours of order placement. Once the order gets shipped, it can not be canceled.</string>
+    <!--  tab  -->
+    <string name="style">Shop by Style</string>
+    <string name="occasion">Shop by Occasion</string>
+    <string name="title_activity_maps">Map</string>
+</resources>

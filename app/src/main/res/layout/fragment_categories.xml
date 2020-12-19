@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.categories.CategoriesFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:background="#fff"
+            android:paddingBottom="20dp">
+            <ImageView
+                android:id="@+id/categories1"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/ashudihatti_banner"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                tools:ignore="RtlSymmetry" />
+
+            <ExpandableListView
+                android:id="@+id/expandableListView"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+                android:divider="@android:color/darker_gray"
+                android:dividerHeight="0.5dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/cosmetic_banner2"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                tools:ignore="RtlSymmetry" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/ashudihatti_banner3"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                tools:ignore="RtlSymmetry" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/handloom_banner"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                tools:ignore="RtlSymmetry" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/ashudihatti_banner1"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                tools:ignore="RtlSymmetry" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/ashudihatti_banner2"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                tools:ignore="RtlSymmetry" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

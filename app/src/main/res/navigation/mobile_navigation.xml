@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.ashudihatti.fragments.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_product"
+        android:name="com.example.ashudihatti.fragments.categories.CategoriesFragment"
+        android:label="@string/menu_product"
+        tools:layout="@layout/fragment_categories" />
+
+    <fragment
+        android:id="@+id/nav_fb_page"
+        android:name="com.example.ashudihatti.fragments.fb_live"
+        android:label="@string/menu_fb"
+        tools:layout="@layout/fragment_fb_live" />
+
+    <fragment
+        android:id="@+id/nav_orders"
+        android:name="com.example.ashudihatti.fragments.order.OrderFragment"
+        android:label="@string/menu_order"
+        tools:layout="@layout/fragment_order" />
+
+    <fragment
+        android:id="@+id/nav_notifications"
+        android:name="com.example.ashudihatti.fragments.notification.NotificationFragment"
+        android:label="@string/menu_notification"
+        tools:layout="@layout/fragment_notification" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.ashudihatti.fragments.settings"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
+
+</navigation>

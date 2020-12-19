@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.manage_address">
+
+    <!--  ToolBar  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:background="@color/logoBackground">
+
+        <ImageView
+            android:id="@+id/manage_address_back_button"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/manage_address"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"/>
+    </LinearLayout>
+
+
+    <!--  Address Fields  -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--    user_name    -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/manage_address_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/name"
+                android:transitionName="user_email"
+                app:hintTextColor="#008DD2"
+                app:layout_constraintBottom_toTopOf="@+id/password_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/apptheme_edit_text_holo_light"
+                    android:ems="10"
+                    android:paddingStart="15dp"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/white"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--    user_email    -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/manage_address_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/email"
+                android:transitionName="user_email"
+                app:hintTextColor="#008DD2"
+                app:layout_constraintBottom_toTopOf="@+id/password_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/apptheme_edit_text_holo_light"
+                    android:ems="10"
+                    android:paddingStart="15dp"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/white"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--   user_country  user_state       -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <!--    user_country    -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/manage_address_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/country"
+                    android:transitionName="user_email"
+                    app:hintTextColor="#008DD2"
+                    app:layout_constraintBottom_toTopOf="@+id/password_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/apptheme_edit_text_holo_light"
+                        android:ems="10"
+                        android:paddingStart="15dp"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/white"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <!--  user_state  -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/manage_address_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/state"
+                    android:transitionName="user_email"
+                    app:hintTextColor="#008DD2"
+                    app:layout_constraintBottom_toTopOf="@+id/password_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/apptheme_edit_text_holo_light"
+                        android:ems="10"
+                        android:paddingStart="15dp"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/white"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <!--    primary_address    -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/manage_address_primary_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/primary_address"
+                android:transitionName="user_email"
+                app:hintTextColor="#008DD2"
+                app:layout_constraintBottom_toTopOf="@+id/password_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/apptheme_edit_text_holo_light"
+                    android:ems="10"
+                    android:paddingStart="15dp"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/white"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--    secondary_address    -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/manage_address_secondary_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/secondary_address"
+                android:transitionName="user_email"
+                app:hintTextColor="#008DD2"
+                app:layout_constraintBottom_toTopOf="@+id/password_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/apptheme_edit_text_holo_light"
+                    android:ems="10"
+                    android:paddingStart="15dp"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/white"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--   user_city  user_pin_code       -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <!--    user_city    -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/manage_address_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/city"
+                    android:transitionName="user_email"
+                    app:hintTextColor="#008DD2"
+                    app:layout_constraintBottom_toTopOf="@+id/password_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/apptheme_edit_text_holo_light"
+                        android:ems="10"
+                        android:paddingStart="15dp"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/white"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--  user_pin_code  -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/manage_address_zip_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/pin_code"
+                    android:transitionName="user_email"
+                    app:hintTextColor="#008DD2"
+                    app:layout_constraintBottom_toTopOf="@+id/password_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/apptheme_edit_text_holo_light"
+                        android:ems="10"
+                        android:inputType="number|phone"
+                        android:paddingStart="15dp"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/white"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <!--    phone_number    -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/manage_address_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/number"
+                android:transitionName="user_email"
+                app:hintTextColor="#008DD2"
+                app:layout_constraintBottom_toTopOf="@+id/password_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/apptheme_edit_text_holo_light"
+                    android:ems="10"
+                    android:inputType="number|phone"
+                    android:paddingStart="15dp"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/white"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/manage_address_save_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save_address"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_background"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
