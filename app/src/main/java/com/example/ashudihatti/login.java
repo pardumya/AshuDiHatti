@@ -31,13 +31,12 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class login extends AppCompatActivity {
+public class login extends AppCompatActivity implements View.OnClickListener {
 
     Button register,login_button,forget_password;
     ImageView login_logo;
     TextInputLayout login_editText_PersonName,login_editText_Password;
     ImageButton drop;
-    //String
     String email,password,user_id,user_email,user_phone,user_name;
     SharedPreferences.Editor editor;
     SharedPreferences preferences;
@@ -53,7 +52,6 @@ public class login extends AppCompatActivity {
 
         //SharedPreferences
         preferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
-        editor = preferences.edit();
 
         //ImageView Id
         login_logo = findViewById(R.id.login_logo);
@@ -64,70 +62,15 @@ public class login extends AppCompatActivity {
         register = findViewById(R.id.register);
         login_button = findViewById(R.id.login_button);
         forget_password = findViewById(R.id.forget_password);
-
         //ImageButton Id
         drop = findViewById(R.id.drop);
 
-        //ImageButton on click
-        drop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(forget_password.getVisibility() == View.VISIBLE){
-                    forget_password.setVisibility(View.GONE);
-                    drop.setImageResource(R.drawable.ic_baseline_arrow_drop_down_24);
-                }else{
-                    forget_password.setVisibility(View.VISIBLE);
-                    drop.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
-                }
-            }
-        });
+        //On Click
+        drop.setOnClickListener(this);
+        register.setOnClickListener(this);
+        login_button.setOnClickListener(this);
+        forget_password.setOnClickListener(this);
 
-        //button on click
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(login.this,register.class);
-                Pair[] pairs = new Pair[4];
-                pairs[0] = new Pair<View,String>(login_logo,"loading_logo_image");
-                pairs[1] = new Pair<View,String>(login_editText_PersonName,"user_email");
-                pairs[2] = new Pair<View,String>(login_editText_PersonName,"user_password");
-                pairs[3] = new Pair<View,String>(login_button,"login");
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(login.this,pairs);
-                startActivity(intent,options.toBundle());
-            }
-        });
-        login_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                email = login_editText_PersonName.getEditText().getText().toString().trim();
-                password = login_editText_Password.getEditText().getText().toString().trim();
-
-                if(email.isEmpty()){
-                    login_editText_PersonName.setError(Constants.error);
-                }else{
-                    login_editText_PersonName.setError(null);
-                    Pattern pattern1 = Pattern.compile("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+");
-                    Matcher matcher1 = pattern1.matcher(email);
-                    if(matcher1.matches()){
-                        if(password.isEmpty()){
-                            login_editText_Password.setError(Constants.error);
-                        }else{
-                            login_editText_Password.setError(null);
-                            makeJsonObjReq(email,password);
-                        }
-                    }else{
-                        login_editText_PersonName.setError(Constants.invalid_email);
-                    }
-                }
-            }
-        });
-        forget_password.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDialog();
-            }
-        });
     }
 
     public void openDialog() {
@@ -137,13 +80,13 @@ public class login extends AppCompatActivity {
 
     //////  user login check  Function //////
 
-    private void makeJsonObjReq(String email, String password) {
-        final Map<String, String> postParam= new HashMap<String, String>();
+    private void user_login(String email, String password) {
+        final Map<String, String> postParam= new HashMap<>();
         postParam.put("email", email);
         postParam.put("password", password);
 
         final JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                "api", new JSONObject(postParam),
+                Constants.login_api, new JSONObject(postParam),
                 new Response.Listener<JSONObject>() {
 
                     @Override
@@ -154,11 +97,14 @@ public class login extends AppCompatActivity {
                             user_email = response.getString("email");
                             user_phone = response.getString("phone");
 
+                            editor = preferences.edit();
                             editor.putString("id",user_id);
                             editor.putString("name",user_name);
                             editor.putString("email",user_email);
                             editor.putString("phone",user_phone);
                             editor.apply();
+
+                            Log.d("datta",user_id+user_email+user_phone+user_name);
                             startActivity(new Intent(login.this, index.class));
                         } catch (JSONException e) {
                             Log.d("error",e.getMessage());
@@ -186,5 +132,57 @@ public class login extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(login.this,index.class));
+    }
+
+    @Override
+    public void onClick(View view) {
+        //drop button
+        if(view.getId() == R.id.drop){
+            if(forget_password.getVisibility() == View.VISIBLE){
+                forget_password.setVisibility(View.GONE);
+                drop.setImageResource(R.drawable.ic_baseline_arrow_drop_down_24);
+            }else{
+                forget_password.setVisibility(View.VISIBLE);
+                drop.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+            }
+        }
+        //register button
+        else if(view.getId() == R.id.register){
+            Intent intent = new Intent(login.this,register.class);
+            Pair[] pairs = new Pair[4];
+            pairs[0] = new Pair<View,String>(login_logo,"loading_logo_image");
+            pairs[1] = new Pair<View,String>(login_editText_PersonName,"user_email");
+            pairs[2] = new Pair<View,String>(login_editText_PersonName,"user_password");
+            pairs[3] = new Pair<View,String>(login_button,"login");
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(login.this,pairs);
+            startActivity(intent,options.toBundle());
+        }
+        //login button
+        else if(view.getId() == R.id.login_button){
+            email = login_editText_PersonName.getEditText().getText().toString().trim();
+            password = login_editText_Password.getEditText().getText().toString().trim();
+
+            if(email.isEmpty()){
+                login_editText_PersonName.setError(Constants.error);
+            }else{
+                login_editText_PersonName.setError(null);
+                Pattern pattern1 = Pattern.compile("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+");
+                Matcher matcher1 = pattern1.matcher(email);
+                if(matcher1.matches()){
+                    if(password.isEmpty()){
+                        login_editText_Password.setError(Constants.error);
+                    }else{
+                        login_editText_Password.setError(null);
+                        user_login(email,password);
+                    }
+                }else{
+                    login_editText_PersonName.setError(Constants.invalid_email);
+                }
+            }
+        }
+        //forget password button
+        else if(view.getId() == R.id.forget_password){
+            openDialog();
+        }
     }
 }

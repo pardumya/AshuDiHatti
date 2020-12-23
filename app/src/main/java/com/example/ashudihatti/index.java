@@ -22,6 +22,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.example.ashudihatti.fragments.profile;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -97,15 +99,19 @@ public class index extends AppCompatActivity implements View.OnClickListener{
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-
+        menu.getItem(0).setVisible(true);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+
         if(id == R.id.menu_cart){
             startActivity(new Intent(index.this,cart.class));
+            return true;
+        }else if(id == R.id.menu_profile){
+            startActivity(new Intent(index.this, profile.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -1,7 +1,12 @@
 package com.example.ashudihatti;
 
 import android.app.ActivityOptions;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Pair;
@@ -29,6 +34,12 @@ public class Loading extends AppCompatActivity {
 
         loading_logo.setAnimation(loading_image);
 
+        //checking internet connection
+        isConnectionAvailable(Loading.this);
+
+    }
+
+    public void login(){
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -40,6 +51,25 @@ public class Loading extends AppCompatActivity {
                 startActivity(i,options.toBundle());
             }
         }, 1800);
+    }
+
+    public void isConnectionAvailable(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
+            if (netInfo != null && netInfo.isConnected()
+                    && netInfo.isConnectedOrConnecting()
+                    && netInfo.isAvailable()) {
+                login();
+            }else{
+                openDialog();
+            }
+        }
+    }
+
+    public void openDialog() {
+        ForgetPasswordDialog exampleDialog = new ForgetPasswordDialog("Internet Connection");
+        exampleDialog.show(Loading.this.getSupportFragmentManager(), "dialog");
     }
 }
 

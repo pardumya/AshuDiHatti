@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/profile"
+        android:id="@+id/menu_profile"
+        android:icon="@drawable/person_toolbar"
+        app:showAsAction="always" />
     <item android:title="@string/cart"
         android:id="@+id/menu_cart"
         android:icon="@drawable/ic_baseline_shopping_cart_24"

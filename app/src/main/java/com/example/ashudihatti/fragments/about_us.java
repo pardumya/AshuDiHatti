@@ -11,9 +11,8 @@ import com.example.ashudihatti.R;
 import com.example.ashudihatti.index;
 
 
-public class about_us extends AppCompatActivity {
+public class about_us extends AppCompatActivity implements View.OnClickListener {
 
-    //ImageView
     ImageView about_back;
 
     @Override
@@ -21,16 +20,18 @@ public class about_us extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
 
-        //ImageView
+        //ImageView Id
         about_back = findViewById(R.id.about_back);
 
-        //ImageView on click
-        about_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(about_us.this, index.class));
-            }
-        });
+        //On Click
+        about_back.setOnClickListener(this);
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.about_back){
+            finish();
+        }
     }
 }

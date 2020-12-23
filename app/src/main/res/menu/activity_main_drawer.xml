@@ -13,16 +13,15 @@
             android:id="@+id/nav_product"
             android:icon="@drawable/ic_baseline_card_travel_24"
             android:title="@string/menu_product" />
-
+        <item
+            android:id="@+id/nav_fb_page"
+            android:icon="@drawable/ic_baseline_card_travel_24"
+            android:title="@string/menu_fb" />
     </group>
 
     <group android:checkableBehavior="single">
         <item android:title="@string/profile">
             <menu>
-                <item
-                    android:id="@+id/nav_fb_page"
-                    android:icon="@drawable/ic_baseline_card_travel_24"
-                    android:title="@string/menu_fb" />
                 <item
                     android:id="@+id/nav_orders"
                     android:icon="@drawable/ic_baseline_card_travel_24"

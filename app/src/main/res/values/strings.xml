@@ -105,6 +105,7 @@
     <string name="change_password">Change Password</string>
     <string name="new_password">New Password</string>
     <string name="old_password">Old Password</string>
+    <string name="save">Save</string>
     <string name="faqs">FAQs</string>
     <string name="manage_address">Manage Address</string>
     <string name="about_us">About_Us</string>

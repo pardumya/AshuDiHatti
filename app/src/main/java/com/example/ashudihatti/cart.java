@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class cart extends AppCompatActivity {
+public class cart extends AppCompatActivity implements View.OnClickListener {
 
     ImageView cart_back_button;
     Button cart_view_product;
@@ -25,24 +25,22 @@ public class cart extends AppCompatActivity {
         cart_back_button = findViewById(R.id.cart_back_button);
         //Button
         cart_view_product = findViewById(R.id.cart_view_product);
-        //Button on click
-        cart_view_product.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(cart.this,index.class));
-            }
-        });
 
-        //ImageView on click
-        cart_back_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+
+        //On Click
+        cart_view_product.setOnClickListener(this);
+        cart_back_button.setOnClickListener(this);
 
 
     }
 
 
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.cart_back_button){
+            finish();
+        }else if(view.getId() == R.id.cart_view_product){
+            startActivity(new Intent(cart.this,index.class));
+        }
+    }
 }

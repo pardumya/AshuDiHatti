@@ -77,62 +77,122 @@
                     android:orientation="horizontal"
                     android:weightSum="2">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/contact_username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/apptheme_edit_text_holo_light"
+                        android:layout_marginBottom="5dp"
                         android:hint="@string/name"
-                        android:inputType="text"
-                        tools:ignore="Autofill" />
+                        android:transitionName="user_email"
+                        app:hintTextColor="#008DD2"
+                        android:layout_weight="1"
+                        app:layout_constraintBottom_toTopOf="@+id/password_layout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
 
-                    <EditText
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/apptheme_edit_text_holo_light"
+                            android:drawableStart="@drawable/person"
+                            android:ems="10"
+                            android:paddingStart="15dp"
+                            android:textAlignment="center"
+                            android:inputType="text"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@android:color/white"
+                            tools:ignore="RtlSymmetry" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/contact_user_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/apptheme_edit_text_holo_light"
+                        android:layout_marginBottom="5dp"
                         android:hint="@string/email"
-                        tools:ignore="Autofill"
-                        android:inputType="textEmailAddress" />
+                        android:transitionName="user_email"
+                        app:hintTextColor="#008DD2"
+                        android:layout_weight="1"
+                        app:layout_constraintBottom_toTopOf="@+id/password_layout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/apptheme_edit_text_holo_light"
+                            android:drawableStart="@drawable/ic_baseline_email_24"
+                            android:ems="10"
+                            android:paddingStart="15dp"
+                            android:textAlignment="center"
+                            android:inputType="textEmailAddress"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@android:color/white"
+                            tools:ignore="RtlSymmetry" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:orientation="horizontal">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/contact_user_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/apptheme_edit_text_holo_light"
+                        android:layout_marginBottom="5dp"
                         android:hint="@string/number"
-                        tools:ignore="Autofill"
-                        android:inputType="number" />
+                        android:transitionName="user_email"
+                        app:hintTextColor="#008DD2"
+                        app:layout_constraintBottom_toTopOf="@+id/password_layout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
 
-                    <EditText
-                        android:id="@+id/contact_user_city"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/apptheme_edit_text_holo_light"
-                        android:hint="@string/city"
-                        tools:ignore="Autofill"
-                        android:inputType="text" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/apptheme_edit_text_holo_light"
+                            android:drawableStart="@drawable/ic_baseline_phone_android_24"
+                            android:ems="10"
+                            android:paddingStart="15dp"
+                            android:textAlignment="center"
+                            android:inputType="phone"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@android:color/white"
+                            tools:ignore="RtlSymmetry" />
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
-                <EditText
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/contact_user_query"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/apptheme_edit_text_holo_light"
-                    android:hint="@string/enter_query"
-                    tools:ignore="Autofill"
-                    android:inputType="text" />
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/query"
+                    android:transitionName="user_email"
+                    app:hintTextColor="#008DD2"
+                    app:layout_constraintBottom_toTopOf="@+id/password_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/apptheme_edit_text_holo_light"
+                        android:ems="10"
+                        android:paddingStart="15dp"
+                        android:textAlignment="center"
+                        android:inputType="text"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/white"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                     android:id="@+id/contact_query_submit"
@@ -145,6 +205,7 @@
                     android:textAllCaps="false"
                     android:text="@string/submit"
                     android:textSize="18sp" />
+
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

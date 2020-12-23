@@ -2,6 +2,15 @@ package com.example.ashudihatti.constants;
 
 public class Constants {
 
+    //product api
+    public static String product_api = "http://ashudihatti.in/rohar/tech/ashu/di/hatti/api/product/";
+    //contact-us api
+    public static String contact_us_api = "http://ashudihatti.in/rohar/tech/ashu/di/hatti/api/contact_us/";
+    //login api
+    public static String login_api = "http://ashudihatti.in/rohar/tech/ashu/di/hatti/api/user-login/";
+    //fb -live api
+    public static String fb_live_api = "http://ashudihatti.in/rohar/tech/ashu/di/hatti/api/fblive/";
+
     //Validations
     public static String error = "Field cant be empty";
     public static String invalid_name = "Invalid Name";

@@ -15,17 +15,6 @@
         android:orientation="horizontal"
         android:background="@color/logoBackground">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:visibility="gone"
-            android:src="@drawable/ic_baseline_sort_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -217,106 +206,13 @@
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
-
-                    <LinearLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/men_collection_recyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="10dp"
-                        android:weightSum="3"
-                        tools:ignore="DisableBaselineAlignment">
-                        <LinearLayout
-                            android:id="@+id/Men"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1"
-                            android:elevation="5dp"
-                            android:background="@drawable/home_searchview"
-                            android:padding="5dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginStart="10dp">
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="10dp">
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="200dp"
-                                    android:padding="5dp"
-                                    android:background="@drawable/men_banner"
-                                    tools:ignore="ContentDescription" />
-                            </androidx.cardview.widget.CardView>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/shop_now"
-                                android:textStyle="bold"
-                                android:layout_gravity="center"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:id="@+id/Women"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1"
-                            android:background="@drawable/home_searchview"
-                            android:elevation="10dp"
-                            android:padding="5dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginStart="10dp" >
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="10dp">
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="200dp"
-                                    android:padding="5dp"
-                                    android:background="@drawable/men_banner"
-                                    tools:ignore="ContentDescription" />
-                            </androidx.cardview.widget.CardView>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/shop_now"
-                                android:textStyle="bold"
-                                android:layout_gravity="center"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/Cosmetic"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/home_searchview"
-                            android:elevation="10dp"
-                            android:orientation="vertical"
-                            android:padding="5dp">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/men_banner"
-                                    tools:ignore="ContentDescription" />
-                            </androidx.cardview.widget.CardView>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:textStyle="bold"
-                                android:text="@string/shop_now" />
-                        </LinearLayout>
-                    </LinearLayout>
+                        app:spanCount="3"
+                        tools:listitem="@layout/product_layout"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
                 </LinearLayout>
 
                 <!--    New_Arrival Best_Seller You_May_Like Section     -->
@@ -433,103 +329,13 @@
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
-                    <LinearLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/women_collection_recyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="10dp"
-                        android:weightSum="3"
-                        tools:ignore="DisableBaselineAlignment">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1"
-                            android:elevation="5dp"
-                            android:background="@drawable/home_searchview"
-                            android:padding="5dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginStart="10dp">
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="10dp">
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="200dp"
-                                    android:padding="5dp"
-                                    android:background="@drawable/product_image"
-                                    tools:ignore="ContentDescription" />
-                            </androidx.cardview.widget.CardView>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/shop_now"
-                                android:textStyle="bold"
-                                android:layout_gravity="center"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1"
-                            android:background="@drawable/home_searchview"
-                            android:elevation="10dp"
-                            android:padding="5dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginStart="10dp" >
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="10dp">
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="200dp"
-                                    android:padding="5dp"
-                                    android:background="@drawable/product_image"
-                                    tools:ignore="ContentDescription" />
-                            </androidx.cardview.widget.CardView>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/shop_now"
-                                android:textStyle="bold"
-                                android:layout_gravity="center"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/home_searchview"
-                            android:elevation="10dp"
-                            android:orientation="vertical"
-                            android:padding="5dp">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/product_image"
-                                    tools:ignore="ContentDescription" />
-                            </androidx.cardview.widget.CardView>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:textStyle="bold"
-                                android:text="@string/shop_now" />
-                        </LinearLayout>
-
-                    </LinearLayout>
+                        app:spanCount="3"
+                        tools:listitem="@layout/product_layout"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
 
                 </LinearLayout>
 
@@ -552,103 +358,13 @@
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
-                    <LinearLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/handloom_collection_recyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="10dp"
-                        android:weightSum="3"
-                        tools:ignore="DisableBaselineAlignment">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1"
-                            android:elevation="5dp"
-                            android:background="@drawable/home_searchview"
-                            android:padding="5dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginStart="10dp">
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="10dp">
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="200dp"
-                                    android:padding="5dp"
-                                    android:background="@drawable/handloons"
-                                    tools:ignore="ContentDescription" />
-                            </androidx.cardview.widget.CardView>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/shop_now"
-                                android:textStyle="bold"
-                                android:layout_gravity="center"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1"
-                            android:background="@drawable/home_searchview"
-                            android:elevation="10dp"
-                            android:padding="5dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginStart="10dp" >
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="10dp">
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="200dp"
-                                    android:padding="5dp"
-                                    android:background="@drawable/handloons"
-                                    tools:ignore="ContentDescription" />
-                            </androidx.cardview.widget.CardView>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/shop_now"
-                                android:textStyle="bold"
-                                android:layout_gravity="center"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/home_searchview"
-                            android:elevation="10dp"
-                            android:orientation="vertical"
-                            android:padding="5dp">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/handloons"
-                                    tools:ignore="ContentDescription" />
-                            </androidx.cardview.widget.CardView>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:textStyle="bold"
-                                android:text="@string/shop_now" />
-                        </LinearLayout>
-
-                    </LinearLayout>
+                        app:spanCount="3"
+                        tools:listitem="@layout/product_layout"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
 
                 </LinearLayout>
 
