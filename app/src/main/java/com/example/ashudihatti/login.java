@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,9 +39,10 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     ImageView login_logo;
     TextInputLayout login_editText_PersonName,login_editText_Password;
     ImageButton drop;
-    String email,password,user_id,user_email,user_phone,user_name;
+    String email,password,user_id,user_email,user_phone,user_name,message;
     SharedPreferences.Editor editor;
     SharedPreferences preferences;
+    ProgressBar login_progressbar;
 
     RequestQueue queue;
 
@@ -49,6 +52,9 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_login);
 
         queue = Volley.newRequestQueue(this);
+
+        //ProgressBar
+        login_progressbar = findViewById(R.id.login_progressbar);
 
         //SharedPreferences
         preferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
@@ -81,6 +87,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     //////  user login check  Function //////
 
     private void user_login(String email, String password) {
+
         final Map<String, String> postParam= new HashMap<>();
         postParam.put("email", email);
         postParam.put("password", password);
@@ -92,6 +99,8 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            message = "d";
+
                             user_id = response.getString("id");
                             user_name = response.getString("name");
                             user_email = response.getString("email");
@@ -104,17 +113,20 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                             editor.putString("phone",user_phone);
                             editor.apply();
 
-                            Log.d("datta",user_id+user_email+user_phone+user_name);
                             startActivity(new Intent(login.this, index.class));
+
                         } catch (JSONException e) {
-                            Log.d("error",e.getMessage());
+                            Log.d("datta","s"+e.getMessage());
+                            message = "s"+e.getMessage();
                         }
+
                     }
                 }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                    Log.d("error",error.toString());
+                message = "Try-Again Later";
+                Log.d("datta","s"+error.getMessage());
             }
         }) {
             @Override
@@ -124,6 +136,9 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                 return headers;
             }
         };
+
+        Toast.makeText(this, ""+message, Toast.LENGTH_SHORT).show();
+        login_progressbar.setVisibility(View.GONE);
         queue.add(jsonObjReq);
     }
 
@@ -159,6 +174,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         }
         //login button
         else if(view.getId() == R.id.login_button){
+            login_progressbar.setVisibility(View.VISIBLE);
             email = login_editText_PersonName.getEditText().getText().toString().trim();
             password = login_editText_Password.getEditText().getText().toString().trim();
 

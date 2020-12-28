@@ -23,6 +23,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.ashudihatti.constants.Constants;
 import com.example.ashudihatti.fragments.profile;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -32,8 +33,6 @@ public class index extends AppCompatActivity implements View.OnClickListener{
     private AppBarConfiguration mAppBarConfiguration;
     long backPressedTime;
     Toast backToast;
-    public static String FACEBOOK_URL = "https://www.facebook.com/Ashu-di-Hatti-phagwara-104793427965220";
-    public static String FACEBOOK_PAGE_ID = "Ashu-di-Hatti-phagwara-104793427965220";
 
     ImageView facebook,instagram,twitter,pinterest;
     Button header_login,header_signup;
@@ -97,7 +96,7 @@ public class index extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         menu.getItem(0).setVisible(true);
         return true;
@@ -153,7 +152,7 @@ public class index extends AppCompatActivity implements View.OnClickListener{
             startActivity(facebookIntent);
             drawer.close();
         }else if(view.getId() == R.id.instagram){
-            Uri uri = Uri.parse("https://www.instagram.com/ashudihattiphagwara/?hl=en");
+            Uri uri = Uri.parse(Constants.instagram_url);
             Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
 
             likeIng.setPackage("com.instagram.android");
@@ -162,19 +161,19 @@ public class index extends AppCompatActivity implements View.OnClickListener{
                 startActivity(likeIng);
             } catch (ActivityNotFoundException e) {
                 startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://www.instagram.com/ashudihattiphagwara/?hl=en")));
+                        Uri.parse(Constants.instagram_url)));
             }
         }else if(view.getId() == R.id.twitter){
             try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/HattiAshu")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.twitter_url)));
             }catch (Exception e) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/HattiAshu")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.twitter_url)));
             }
         }else if(view.getId() == R.id.pinterest){
             try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("pinterest://www.pinterest.com/aashudihattiphagwara")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.pinterest_page_id)));
             } catch (Exception e) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.pinterest.com/aashudihattiphagwara")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.pinterest_url)));
             }
         }
         //Login or Signup Button
@@ -197,13 +196,13 @@ public class index extends AppCompatActivity implements View.OnClickListener{
         PackageManager packageManager = context.getPackageManager();
         try {
             int versionCode = packageManager.getPackageInfo("com.facebook.katana", 0).versionCode;
-            if (versionCode >= 3002850) { //newer versions of fb app
-                return "fb://facewebmodal/f?href=" + FACEBOOK_URL;
-            } else { //older versions of fb app
-                return "fb://page/" + FACEBOOK_PAGE_ID;
+            if (versionCode >= 3002850) {
+                return "fb://facewebmodal/f?href=" + Constants.FACEBOOK_URL;
+            } else {
+                return "fb://page/" + Constants.FACEBOOK_PAGE_ID;
             }
         } catch (PackageManager.NameNotFoundException e) {
-            return FACEBOOK_URL; //normal web url
+            return Constants.FACEBOOK_URL;
         }
     }
 

@@ -216,7 +216,7 @@ public class register extends AppCompatActivity {
         postParam.put("email", email);
 
         final JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                "api", new JSONObject(postParam),
+                Constants.sign_up_api, new JSONObject(postParam),
                 new Response.Listener<JSONObject>() {
 
                     @Override
@@ -266,7 +266,7 @@ public class register extends AppCompatActivity {
         postParam.put("password", password);
 
         final JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                "api", new JSONObject(postParam),
+                Constants.sign_up_api, new JSONObject(postParam),
                 new Response.Listener<JSONObject>() {
 
                     @Override

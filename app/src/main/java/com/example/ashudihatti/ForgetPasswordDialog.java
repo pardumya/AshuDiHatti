@@ -31,7 +31,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class ForgetPasswordDialog extends AppCompatDialogFragment {
     private TextInputLayout forget_password_email,forget_password_old_password,forget_password_new_password;
     RequestQueue queue;
@@ -56,7 +55,6 @@ public class ForgetPasswordDialog extends AppCompatDialogFragment {
 
         user_forget_password_layout = view.findViewById(R.id.user_forget_password_layout);
         internet_connection = view.findViewById(R.id.internet_connection);
-
 
         dialog = new AlertDialog.Builder(getActivity())
                 .setView(view)
@@ -117,7 +115,7 @@ public class ForgetPasswordDialog extends AppCompatDialogFragment {
         postParam.put("email", email);
 
         final JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                "api", new JSONObject(postParam),
+                Constants.forget_password_info_api, new JSONObject(postParam),
                 new Response.Listener<JSONObject>() {
 
                     @Override
@@ -151,7 +149,7 @@ public class ForgetPasswordDialog extends AppCompatDialogFragment {
         Log.d("data", String.valueOf(postParam));
 
         final JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                "api", new JSONObject(postParam),
+                Constants.change_password_info_api, new JSONObject(postParam),
                 new Response.Listener<JSONObject>() {
 
                     @Override

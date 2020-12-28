@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.ashudihatti.R;
 import com.example.ashudihatti.info.home_info;
-import com.example.ashudihatti.info.popular_info;
 import com.example.ashudihatti.product_info;
 
 import java.util.ArrayList;
@@ -61,6 +60,7 @@ public class home_adapter extends RecyclerView.Adapter<home_adapter.MyViewHolder
 
                 Intent intent = new Intent(context, product_info.class);
                 intent.putStringArrayListExtra("Images", (ArrayList<String>) app.getProduct_Image());
+                intent.putExtra("product_id",app.getProduct_id());
                 intent.putExtra("name",app.getProduct_name());
                 intent.putExtra("price",app.getProduct_Price());
                 intent.putExtra("discount",app.getProduct_Discount_Price());

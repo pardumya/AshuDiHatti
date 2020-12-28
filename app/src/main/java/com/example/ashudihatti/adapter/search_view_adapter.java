@@ -59,6 +59,7 @@ public class search_view_adapter extends RecyclerView.Adapter<search_view_adapte
                 Intent intent = new Intent(context, product_info.class);
                 intent.putStringArrayListExtra("Images", (ArrayList<String>) app.getProduct_Image());
                 intent.putStringArrayListExtra("Color", (ArrayList<String>) app.getProduct_Color());
+                intent.putExtra("product_id",app.getProduct_id());
                 intent.putExtra("name",app.getProduct_name());
                 intent.putExtra("price",app.getProduct_Price());
                 intent.putExtra("discount",app.getProduct_Discount_Price());

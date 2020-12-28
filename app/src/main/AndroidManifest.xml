@@ -19,7 +19,6 @@
         <activity android:name=".fragments.about_us" />
         <activity android:name=".fragments.faqs" />
         <activity android:name=".fragments.manage_address" />
-        <activity android:name=".categories_product" />
         <activity android:name=".searchView" />
 
         <meta-data

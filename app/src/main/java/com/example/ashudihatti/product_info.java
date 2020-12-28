@@ -11,15 +11,33 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.ashudihatti.adapter.product_adapter;
+import com.example.ashudihatti.constants.Constants;
+import com.example.ashudihatti.info.product_info_data;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class product_info extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,9 +47,10 @@ public class product_info extends AppCompatActivity implements View.OnClickListe
     ProgressBar product_info_progressbar;
     List<String> images = new ArrayList<>();
     List<String> color = new ArrayList<>();
-    String product_name,product_Label,product_Price,product_Discount_Price,product_Description,product_Specification,product_rating_value;
+    String product_name,product_Label,product_Price,product_Discount_Price,product_Description,product_Specification,product_rating_value,product_id,stringRequest_type,cart_products,stringCartId,api;
     ImageSlider product_info_image_slider;
     RatingBar RatingBar;
+    RequestQueue queue;
 
     int item;
 
@@ -40,10 +59,13 @@ public class product_info extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_info);
 
+        queue = Volley.newRequestQueue(this);
+
         //Intent Get Data
         Intent intent = getIntent();
         images =  intent.getStringArrayListExtra("Images");
         color =  intent.getStringArrayListExtra("Color");
+        product_id = intent.getStringExtra("product_id");
         product_name = intent.getStringExtra("name");
         product_Price = intent.getStringExtra("price");
         product_Discount_Price = intent.getStringExtra("discount");
@@ -116,6 +138,98 @@ public class product_info extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    public void get_product_info(){
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.cart_api,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray heroArray = new JSONArray(response);
+
+                            for (int i = 0; i < heroArray.length(); i++) {
+                                JSONObject heroObject = heroArray.getJSONObject(i);
+
+                                String customer = heroObject.getString("user");
+                                String[] data = customer.split("/");
+
+                                if(data[10].equals("1")){
+                                    String cart_id = heroObject.getString("url");
+                                    String[] cart_id_data = cart_id.split("/");
+                                    stringCartId= cart_id_data[10];
+                                    cart_products = heroObject.getString("cart");
+                                    break;
+                                }else{
+                                    stringCartId="";
+                                }
+                            }
+
+                            post_product_info();
+
+                        } catch (JSONException e) {
+                            Log.e("data",e.getMessage().toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(product_info.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(product_info.this);
+
+        requestQueue.add(stringRequest);
+    }
+
+    public void post_product_info(){
+
+        String quantity = product_info_item_show.getText().toString();
+        String product_data = product_id+","+quantity+","+"red";
+
+        String cart;
+
+        if(stringCartId.equals("")){
+            api = Constants.cart_api;
+            cart = product_data;
+            stringRequest_type = String.valueOf(Request.Method.POST);
+        }else{
+            stringRequest_type = String.valueOf(Request.Method.PUT);
+            api = Constants.cart_api+stringCartId+"/";
+            cart = cart_products+","+product_data;
+        }
+
+        final Map<String, String> postParam= new HashMap<String, String>();
+        postParam.put("cart", cart);
+        postParam.put("user", "http://ashudihatti.in/rohar/tech/ashu/di/hatti/api/customer/1/");
+
+
+        final JsonObjectRequest jsonObjReq = new JsonObjectRequest(Integer.parseInt(stringRequest_type),
+                api, new JSONObject(postParam),
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        if(!response.equals("null")){
+
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("error",error.toString());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+        };
+        queue.add(jsonObjReq);
+    }
+
     @Override
     public void onClick(View view) {
         //back button
@@ -138,6 +252,7 @@ public class product_info extends AppCompatActivity implements View.OnClickListe
         else if(view.getId() == R.id.product_info_add){
             product_info_progressbar.setVisibility(View.VISIBLE);
             product_info_add.setVisibility(View.GONE);
+            get_product_info();
 
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -151,6 +266,5 @@ public class product_info extends AppCompatActivity implements View.OnClickListe
         else if(view.getId() == R.id.product_info_view){
             startActivity(new Intent(product_info.this,cart.class));
         }
-
     }
 }

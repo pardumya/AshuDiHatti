@@ -12,20 +12,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.ashudihatti.R;
-import com.example.ashudihatti.info.product_info_data;
-import com.example.ashudihatti.product_info;
+import com.example.ashudihatti.product;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class product_adapter extends RecyclerView.Adapter<product_adapter.MyViewHolder> {
+public class fb_live_adapter extends RecyclerView.Adapter<fb_live_adapter.MyViewHolder> {
 
     Context context;
-    List<product_info_data> apps;
+    List<String> apps;
 
-    public product_adapter(Context context, List<product_info_data> apps) {
+    public fb_live_adapter(Context context, ArrayList<String> apps) {
         this.context = context;
         this.apps = apps;
     }
@@ -49,26 +47,17 @@ public class product_adapter extends RecyclerView.Adapter<product_adapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        final product_info_data app = apps.get(position);
+        final String app = apps.get(position);
 
-        holder.p_name.setText(app.getProduct_name());
-        Glide.with(context).load(app.getProduct_Image().get(0)).into(holder.p_image);
+        holder.p_name.setText(app);
+//        Glide.with(context).load(app.getProduct_Image().get(0)).into(holder.p_image);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(context, product_info.class);
-                intent.putStringArrayListExtra("Images", (ArrayList<String>) app.getProduct_Image());
-                intent.putExtra("product_id",app.getProduct_id());
-                intent.putExtra("name",app.getProduct_name());
-                intent.putExtra("price",app.getProduct_Price());
-                intent.putExtra("discount",app.getProduct_Discount_Price());
-                intent.putExtra("description",app.getProduct_Description());
-                intent.putExtra("specification",app.getProduct_Specification());
-                intent.putExtra("rating",app.getProduct_Rating());
-                intent.putExtra("label",app.getProduct_Label());
-                intent.putStringArrayListExtra("Color", (ArrayList<String>) app.getProduct_Color());
+                Intent intent = new Intent(context, product.class);
+                intent.putExtra("date",app);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 

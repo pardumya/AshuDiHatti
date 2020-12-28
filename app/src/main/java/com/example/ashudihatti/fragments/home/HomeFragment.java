@@ -59,7 +59,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
       View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-
         new_arrival_list = new ArrayList<>();
         best_seller_list = new ArrayList<>();
         you_may_like_list = new ArrayList<>();
@@ -145,7 +144,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public void get_top_men_collection() {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.product_api,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.product_api+"?category=1",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -153,63 +152,56 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         try {
                             JSONArray heroArray = new JSONArray(response);
                             int Count=0;
-                            List<String> demo = new ArrayList<>();
+//                            List<String> demo = new ArrayList<>();
+//
+//                            for (int i = 0; i < heroArray.length(); i++) {
+//                                JSONObject heroObject = heroArray.getJSONObject(i);
+//
+//                                String men_collection = heroObject.getString("category");
+//                                String[] men_collection_data = men_collection.split("/");
+//
+//                                if(men_collection_data[10].equals("1")){
+//                                    String collection = heroObject.getString("url");
+//                                    String[] collection_data = collection.split("/");
+//                                    demo.add(collection_data[10]);
+//                                }
+//                            }
+//
+//                            List<String> number = new ArrayList<>();
+//
+//                            for (int i=0;i<demo.size();i++){
+//                                String random = String.valueOf(new Random().nextInt((demo.size()) + 2) );
+//                                number.add(random);
+//                            }
+//
+//                            Log.d("datta", String.valueOf(number));
 
                             for (int i = 0; i < heroArray.length(); i++) {
                                 JSONObject heroObject = heroArray.getJSONObject(i);
 
-                                String men_collection = heroObject.getString("category");
-                                String[] men_collection_data = men_collection.split("/");
+                                List<String> color = new ArrayList<>();
+                                List<String> images = new ArrayList<>();
 
-                                if(men_collection_data[10].equals("1")){
-                                    String collection = heroObject.getString("url");
-                                    String[] collection_data = collection.split("/");
-                                    demo.add(collection_data[10]);
-                                }
-                            }
+                                color.add(heroObject.getString("color"));
 
-                            List<String> number = new ArrayList<>();
+                                images.add(heroObject.getString("image1"));
+                                images.add(heroObject.getString("image2"));
+                                images.add(heroObject.getString("image3"));
+                                images.add(heroObject.getString("image4"));
 
-                            for (int i=0;i<demo.size();i++){
-                                String random = String.valueOf(new Random().nextInt((demo.size()) + 2) );
-                                number.add(random);
-                            }
+                                String product_id = heroObject.getString("url");
+                                String[] product_id_data = product_id.split("/");
 
-                            Log.d("datta", String.valueOf(number));
+                                String product_category = heroObject.getString("category");
+                                String[] product_category_data = product_category.split("/");
 
-                            for (int i = 0; i < heroArray.length(); i++) {
-                                JSONObject heroObject = heroArray.getJSONObject(i);
-
-                                String men_collection = heroObject.getString("category");
-                                String[] men_collection_data = men_collection.split("/");
-
-                                if(men_collection_data[10].equals("1")){
+                                String product_subcategory = heroObject.getString("subcategory");
+                                String[] product_subcategory_data = product_subcategory.split("/");
 
 
-                                    List<String> color = new ArrayList<>();
-                                    List<String> images = new ArrayList<>();
-
-                                    color.add(heroObject.getString("color"));
-
-                                    images.add(heroObject.getString("image1"));
-                                    images.add(heroObject.getString("image2"));
-                                    images.add(heroObject.getString("image3"));
-                                    images.add(heroObject.getString("image4"));
-
-                                    String product_id = heroObject.getString("url");
-                                    String[] product_id_data = product_id.split("/");
-
-                                    String product_category = heroObject.getString("category");
-                                    String[] product_category_data = product_category.split("/");
-
-                                    String product_subcategory = heroObject.getString("subcategory");
-                                    String[] product_subcategory_data = product_subcategory.split("/");
-
-
-                                    home_info home_info = new home_info(product_id_data[10],heroObject.getString("name"),heroObject.getString("sr_no"),product_category_data[10],product_subcategory_data[10],heroObject.getString("subcat_type"),heroObject.getString("lable"),color,heroObject.getString("price"),heroObject.getString("discount_price"),heroObject.getString("type"),heroObject.getString("description"),heroObject.getString("specification"),heroObject.getString("rating"),heroObject.getString("stock"),images);
-                                    men_collection_list.add(home_info);
-                                    Count++;
-                                }
+                                home_info home_info = new home_info(product_id_data[10],heroObject.getString("name"),heroObject.getString("sr_no"),product_category_data[10],product_subcategory_data[10],heroObject.getString("subcat_type"),heroObject.getString("lable"),color,heroObject.getString("price"),heroObject.getString("discount_price"),heroObject.getString("type"),heroObject.getString("description"),heroObject.getString("specification"),heroObject.getString("rating"),heroObject.getString("stock"),images);
+                                men_collection_list.add(home_info);
+                                Count++;
 
                                 if(Count == 3){
                                     break;
@@ -240,7 +232,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public void get_top_women_collection() {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.product_api,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.product_api+"?category=2",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -252,35 +244,29 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             for (int i = 0; i < heroArray.length(); i++) {
                                 JSONObject heroObject = heroArray.getJSONObject(i);
 
-                                String men_collection = heroObject.getString("category");
-                                String[] men_collection_data = men_collection.split("/");
+                                List<String> color = new ArrayList<>();
+                                List<String> images = new ArrayList<>();
 
-                                if(men_collection_data[10].equals("2")){
+                                color.add(heroObject.getString("color"));
 
-                                    List<String> color = new ArrayList<>();
-                                    List<String> images = new ArrayList<>();
+                                images.add(heroObject.getString("image1"));
+                                images.add(heroObject.getString("image2"));
+                                images.add(heroObject.getString("image3"));
+                                images.add(heroObject.getString("image4"));
 
-                                    color.add(heroObject.getString("color"));
+                                String product_id = heroObject.getString("url");
+                                String[] product_id_data = product_id.split("/");
 
-                                    images.add(heroObject.getString("image1"));
-                                    images.add(heroObject.getString("image2"));
-                                    images.add(heroObject.getString("image3"));
-                                    images.add(heroObject.getString("image4"));
+                                String product_category = heroObject.getString("category");
+                                String[] product_category_data = product_category.split("/");
 
-                                    String product_id = heroObject.getString("url");
-                                    String[] product_id_data = product_id.split("/");
-
-                                    String product_category = heroObject.getString("category");
-                                    String[] product_category_data = product_category.split("/");
-
-                                    String product_subcategory = heroObject.getString("subcategory");
-                                    String[] product_subcategory_data = product_subcategory.split("/");
+                                String product_subcategory = heroObject.getString("subcategory");
+                                String[] product_subcategory_data = product_subcategory.split("/");
 
 
-                                    home_info home_info = new home_info(product_id_data[10],heroObject.getString("name"),heroObject.getString("sr_no"),product_category_data[10],product_subcategory_data[10],heroObject.getString("subcat_type"),heroObject.getString("lable"),color,heroObject.getString("price"),heroObject.getString("discount_price"),heroObject.getString("type"),heroObject.getString("description"),heroObject.getString("specification"),heroObject.getString("rating"),heroObject.getString("stock"),images);
-                                    women_collection_list.add(home_info);
-                                    Count++;
-                                }
+                                home_info home_info = new home_info(product_id_data[10],heroObject.getString("name"),heroObject.getString("sr_no"),product_category_data[10],product_subcategory_data[10],heroObject.getString("subcat_type"),heroObject.getString("lable"),color,heroObject.getString("price"),heroObject.getString("discount_price"),heroObject.getString("type"),heroObject.getString("description"),heroObject.getString("specification"),heroObject.getString("rating"),heroObject.getString("stock"),images);
+                                women_collection_list.add(home_info);
+                                Count++;
 
                                 if(Count == 3){
                                     break;
@@ -311,7 +297,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public void get_top_handloom_collection() {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.product_api,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.product_api+"?category=3",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -323,35 +309,29 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             for (int i = 0; i < heroArray.length(); i++) {
                                 JSONObject heroObject = heroArray.getJSONObject(i);
 
-                                String men_collection = heroObject.getString("category");
-                                String[] men_collection_data = men_collection.split("/");
+                                List<String> color = new ArrayList<>();
+                                List<String> images = new ArrayList<>();
 
-                                if(men_collection_data[10].equals("3")){
+                                color.add(heroObject.getString("color"));
 
-                                    List<String> color = new ArrayList<>();
-                                    List<String> images = new ArrayList<>();
+                                images.add(heroObject.getString("image1"));
+                                images.add(heroObject.getString("image2"));
+                                images.add(heroObject.getString("image3"));
+                                images.add(heroObject.getString("image4"));
 
-                                    color.add(heroObject.getString("color"));
+                                String product_id = heroObject.getString("url");
+                                String[] product_id_data = product_id.split("/");
 
-                                    images.add(heroObject.getString("image1"));
-                                    images.add(heroObject.getString("image2"));
-                                    images.add(heroObject.getString("image3"));
-                                    images.add(heroObject.getString("image4"));
+                                String product_category = heroObject.getString("category");
+                                String[] product_category_data = product_category.split("/");
 
-                                    String product_id = heroObject.getString("url");
-                                    String[] product_id_data = product_id.split("/");
-
-                                    String product_category = heroObject.getString("category");
-                                    String[] product_category_data = product_category.split("/");
-
-                                    String product_subcategory = heroObject.getString("subcategory");
-                                    String[] product_subcategory_data = product_subcategory.split("/");
+                                String product_subcategory = heroObject.getString("subcategory");
+                                String[] product_subcategory_data = product_subcategory.split("/");
 
 
-                                    home_info home_info = new home_info(product_id_data[10],heroObject.getString("name"),heroObject.getString("sr_no"),product_category_data[10],product_subcategory_data[10],heroObject.getString("subcat_type"),heroObject.getString("lable"),color,heroObject.getString("price"),heroObject.getString("discount_price"),heroObject.getString("type"),heroObject.getString("description"),heroObject.getString("specification"),heroObject.getString("rating"),heroObject.getString("stock"),images);
-                                    handloom_collection_list.add(home_info);
-                                    Count++;
-                                }
+                                home_info home_info = new home_info(product_id_data[10],heroObject.getString("name"),heroObject.getString("sr_no"),product_category_data[10],product_subcategory_data[10],heroObject.getString("subcat_type"),heroObject.getString("lable"),color,heroObject.getString("price"),heroObject.getString("discount_price"),heroObject.getString("type"),heroObject.getString("description"),heroObject.getString("specification"),heroObject.getString("rating"),heroObject.getString("stock"),images);
+                                handloom_collection_list.add(home_info);
+                                Count++;
 
                                 if(Count == 3){
                                     break;
@@ -382,18 +362,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public void get_new_arrival(){
 
-
-        int min = 20;
-        int max = 80;
-        List<String> number = new ArrayList<>();
-
-        for (int i=0;i<3;i++){
-            String random = String.valueOf(new Random().nextInt((max - min) + 2) + min);
-            number.add(random);
-        }
-
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.product_api,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.product_api+"?type=NA",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -405,31 +374,29 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             for (int i = 0; i < heroArray.length(); i++) {
                                 JSONObject heroObject = heroArray.getJSONObject(i);
 
-                                if(heroObject.getString("type").equals("NA")){
-                                    List<String> color = new ArrayList<>();
-                                    List<String> images = new ArrayList<>();
+                                List<String> color = new ArrayList<>();
+                                List<String> images = new ArrayList<>();
 
-                                    color.add(heroObject.getString("color"));
+                                color.add(heroObject.getString("color"));
 
-                                    images.add(heroObject.getString("image1"));
-                                    images.add(heroObject.getString("image2"));
-                                    images.add(heroObject.getString("image3"));
-                                    images.add(heroObject.getString("image4"));
+                                images.add(heroObject.getString("image1"));
+                                images.add(heroObject.getString("image2"));
+                                images.add(heroObject.getString("image3"));
+                                images.add(heroObject.getString("image4"));
 
-                                    String product_id = heroObject.getString("url");
-                                    String[] product_id_data = product_id.split("/");
+                                String product_id = heroObject.getString("url");
+                                String[] product_id_data = product_id.split("/");
 
-                                    String product_category = heroObject.getString("category");
-                                    String[] product_category_data = product_category.split("/");
+                                String product_category = heroObject.getString("category");
+                                String[] product_category_data = product_category.split("/");
 
-                                    String product_subcategory = heroObject.getString("subcategory");
-                                    String[] product_subcategory_data = product_subcategory.split("/");
+                                String product_subcategory = heroObject.getString("subcategory");
+                                String[] product_subcategory_data = product_subcategory.split("/");
 
 
-                                    home_info home_info = new home_info(product_id_data[10],heroObject.getString("name"),heroObject.getString("sr_no"),product_category_data[10],product_subcategory_data[10],heroObject.getString("subcat_type"),heroObject.getString("lable"),color,heroObject.getString("price"),heroObject.getString("discount_price"),heroObject.getString("type"),heroObject.getString("description"),heroObject.getString("specification"),heroObject.getString("rating"),heroObject.getString("stock"),images);
-                                    new_arrival_list.add(home_info);
-                                    Count++;
-                                }
+                                home_info home_info = new home_info(product_id_data[10],heroObject.getString("name"),heroObject.getString("sr_no"),product_category_data[10],product_subcategory_data[10],heroObject.getString("subcat_type"),heroObject.getString("lable"),color,heroObject.getString("price"),heroObject.getString("discount_price"),heroObject.getString("type"),heroObject.getString("description"),heroObject.getString("specification"),heroObject.getString("rating"),heroObject.getString("stock"),images);
+                                new_arrival_list.add(home_info);
+                                Count++;
 
                                 if(Count == 6){
                                     break;
@@ -460,7 +427,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public void get_best_seller(){
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.product_api,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.product_api+"?type=BS",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -472,31 +439,29 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             for (int i = 0; i < heroArray.length(); i++) {
                                 JSONObject heroObject = heroArray.getJSONObject(i);
 
-                                if(heroObject.getString("type").equals("BS")){
-                                    List<String> color = new ArrayList<>();
-                                    List<String> images = new ArrayList<>();
+                                List<String> color = new ArrayList<>();
+                                List<String> images = new ArrayList<>();
 
-                                    color.add(heroObject.getString("color"));
+                                color.add(heroObject.getString("color"));
 
-                                    images.add(heroObject.getString("image1"));
-                                    images.add(heroObject.getString("image2"));
-                                    images.add(heroObject.getString("image3"));
-                                    images.add(heroObject.getString("image4"));
+                                images.add(heroObject.getString("image1"));
+                                images.add(heroObject.getString("image2"));
+                                images.add(heroObject.getString("image3"));
+                                images.add(heroObject.getString("image4"));
 
-                                    String product_id = heroObject.getString("url");
-                                    String[] product_id_data = product_id.split("/");
+                                String product_id = heroObject.getString("url");
+                                String[] product_id_data = product_id.split("/");
 
-                                    String product_category = heroObject.getString("category");
-                                    String[] product_category_data = product_category.split("/");
+                                String product_category = heroObject.getString("category");
+                                String[] product_category_data = product_category.split("/");
 
-                                    String product_subcategory = heroObject.getString("subcategory");
-                                    String[] product_subcategory_data = product_subcategory.split("/");
+                                String product_subcategory = heroObject.getString("subcategory");
+                                String[] product_subcategory_data = product_subcategory.split("/");
 
 
-                                    home_info home_info = new home_info(product_id_data[10],heroObject.getString("name"),heroObject.getString("sr_no"),product_category_data[10],product_subcategory_data[10],heroObject.getString("subcat_type"),heroObject.getString("lable"),color,heroObject.getString("price"),heroObject.getString("discount_price"),heroObject.getString("type"),heroObject.getString("description"),heroObject.getString("specification"),heroObject.getString("rating"),heroObject.getString("stock"),images);
-                                    best_seller_list.add(home_info);
-                                    Count++;
-                                }
+                                home_info home_info = new home_info(product_id_data[10],heroObject.getString("name"),heroObject.getString("sr_no"),product_category_data[10],product_subcategory_data[10],heroObject.getString("subcat_type"),heroObject.getString("lable"),color,heroObject.getString("price"),heroObject.getString("discount_price"),heroObject.getString("type"),heroObject.getString("description"),heroObject.getString("specification"),heroObject.getString("rating"),heroObject.getString("stock"),images);
+                                best_seller_list.add(home_info);
+                                Count++;
 
                                 if(Count == 6){
                                     break;
@@ -539,31 +504,29 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             for (int i = 0; i < heroArray.length(); i++) {
                                 JSONObject heroObject = heroArray.getJSONObject(i);
 
-                                if(heroObject.getString("type").equals("null")){
-                                    List<String> color = new ArrayList<>();
-                                    List<String> images = new ArrayList<>();
+                                List<String> color = new ArrayList<>();
+                                List<String> images = new ArrayList<>();
 
-                                    color.add(heroObject.getString("color"));
+                                color.add(heroObject.getString("color"));
 
-                                    images.add(heroObject.getString("image1"));
-                                    images.add(heroObject.getString("image2"));
-                                    images.add(heroObject.getString("image3"));
-                                    images.add(heroObject.getString("image4"));
+                                images.add(heroObject.getString("image1"));
+                                images.add(heroObject.getString("image2"));
+                                images.add(heroObject.getString("image3"));
+                                images.add(heroObject.getString("image4"));
 
-                                    String product_id = heroObject.getString("url");
-                                    String[] product_id_data = product_id.split("/");
+                                String product_id = heroObject.getString("url");
+                                String[] product_id_data = product_id.split("/");
 
-                                    String product_category = heroObject.getString("category");
-                                    String[] product_category_data = product_category.split("/");
+                                String product_category = heroObject.getString("category");
+                                String[] product_category_data = product_category.split("/");
 
-                                    String product_subcategory = heroObject.getString("subcategory");
-                                    String[] product_subcategory_data = product_subcategory.split("/");
+                                String product_subcategory = heroObject.getString("subcategory");
+                                String[] product_subcategory_data = product_subcategory.split("/");
 
 
-                                    home_info home_info = new home_info(product_id_data[10],heroObject.getString("name"),heroObject.getString("sr_no"),product_category_data[10],product_subcategory_data[10],heroObject.getString("subcat_type"),heroObject.getString("lable"),color,heroObject.getString("price"),heroObject.getString("discount_price"),heroObject.getString("type"),heroObject.getString("description"),heroObject.getString("specification"),heroObject.getString("rating"),heroObject.getString("stock"),images);
-                                    you_may_like_list.add(home_info);
-                                    Count++;
-                                }
+                                home_info home_info = new home_info(product_id_data[10],heroObject.getString("name"),heroObject.getString("sr_no"),product_category_data[10],product_subcategory_data[10],heroObject.getString("subcat_type"),heroObject.getString("lable"),color,heroObject.getString("price"),heroObject.getString("discount_price"),heroObject.getString("type"),heroObject.getString("description"),heroObject.getString("specification"),heroObject.getString("rating"),heroObject.getString("stock"),images);
+                                you_may_like_list.add(home_info);
+                                Count++;
 
                                 if(Count == 6){
                                     break;

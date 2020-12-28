@@ -57,6 +57,8 @@
     <string name="cart">Cart</string>
     <string name="cart_empty">Your Cart is Empty</string>
     <string name="view_product">View Product</string>
+    <string name="place_order">Place Order</string>
+    <string name="remove">Remove</string>
     <!--order-->
     <string name="order">Orders</string>
     <!--notification-->
