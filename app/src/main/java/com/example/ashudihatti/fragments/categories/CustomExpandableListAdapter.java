@@ -1,101 +1,146 @@
 package com.example.ashudihatti.fragments.categories;
 
+
 import android.content.Context;
-import android.graphics.Typeface;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.ashudihatti.R;
+import com.example.ashudihatti.constants.Constants;
 
-import java.util.HashMap;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
+public class CustomExpandableListAdapter extends RecyclerView.Adapter<CustomExpandableListAdapter.MyViewHolder> {
 
-    private Context context;
-    private List<String> expandableListTitle;
-    private HashMap<String, List<String>> expandableListDetail;
+    ArrayList<String> cloth;
+    MyViewHolder holder1;
+    Context context;
+    List<CategorySubtitle> apps;
+    int val;
 
-    public CustomExpandableListAdapter(Context context, List<String> expandableListTitle,
-                                       HashMap<String, List<String>> expandableListDetail) {
+    public CustomExpandableListAdapter(Context context, List<CategorySubtitle> apps,int val) {
         this.context = context;
-        this.expandableListTitle = expandableListTitle;
-        this.expandableListDetail = expandableListDetail;
+        this.apps = apps;
+        this.val = val;
     }
 
-    @Override
-    public Object getChild(int listPosition, int expandedListPosition) {
-        return this.expandableListDetail.get(this.expandableListTitle.get(listPosition))
-                .get(expandedListPosition);
-    }
-
-    @Override
-    public long getChildId(int listPosition, int expandedListPosition) {
-        return expandedListPosition;
-    }
-
-    @Override
-    public View getChildView(int listPosition, final int expandedListPosition,
-                             boolean isLastChild, View convertView, ViewGroup parent) {
-        final String expandedListText = (String) getChild(listPosition, expandedListPosition);
-        if (convertView == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) this.context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.list_item, null);
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+        Button p_name;
+        RecyclerView rcy;
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            p_name = itemView.findViewById(R.id.listTitle);
+            rcy = itemView.findViewById(R.id.rcychild);
+            
         }
-        TextView expandedListTextView = (TextView) convertView
-                .findViewById(R.id.expandedListItem);
-        expandedListTextView.setText(expandedListText);
-        return convertView;
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View layout = LayoutInflater.from(context).inflate(R.layout.list_group,parent,false);
+        return new MyViewHolder(layout);
     }
 
     @Override
-    public int getChildrenCount(int listPosition) {
-        return this.expandableListDetail.get(this.expandableListTitle.get(listPosition))
-                .size();
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+        final CategorySubtitle app = apps.get(position);
+        holder.p_name.setText(app.getName());
+        holder.p_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder1 = holder;
+                if(holder.rcy.getVisibility()==View.GONE){
+                    holder.rcy.setVisibility(View.VISIBLE);
+                }else{
+                    holder.rcy.setVisibility(View.GONE);
+                }
+
+                String s[]=apps.get(position).getId().split("/");
+                get_Category(s[10]);
+
+
+            }
+        });
+
+
     }
 
     @Override
-    public Object getGroup(int listPosition) {
-        return this.expandableListTitle.get(listPosition);
+    public int getItemCount() {
+        return apps.size();
     }
 
-    @Override
-    public int getGroupCount() {
-        return this.expandableListTitle.size();
+
+    String data = null;
+    public ArrayList<CategorySubtitle> get_Category(final String val1) {
+
+        final ArrayList<CategorySubtitle> sub_category1 = new ArrayList<>();
+        data = "?category="+String.valueOf(val)+"&subcategory="+val1;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.subtype_category_api+data,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            cloth = new ArrayList<String>();
+
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            JSONArray heroArray = jsonObject.getJSONArray(String.valueOf(val1));
+
+
+                            for (int i = 0; i < heroArray.length(); i++) {
+                                String heroObject = (String) heroArray.get(i);
+
+                                cloth.add(heroObject);
+
+
+                            }
+                            Log.d("data",""+cloth);
+                            CustomSubtypeAdapter customSubtypeAdapter = new CustomSubtypeAdapter(context,cloth,String.valueOf(val),val1);
+                            holder1.rcy.setAdapter(customSubtypeAdapter);
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        requestQueue.add(stringRequest);
+        return  sub_category1;
     }
 
-    @Override
-    public long getGroupId(int listPosition) {
-        return listPosition;
-    }
-
-    @Override
-    public View getGroupView(int listPosition, boolean isExpanded,
-                             View convertView, ViewGroup parent) {
-        String listTitle = (String) getGroup(listPosition);
-        if (convertView == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) this.context.
-                    getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.list_group, null);
-        }
-        TextView listTitleTextView = (TextView) convertView
-                .findViewById(R.id.listTitle);
-        listTitleTextView.setTypeface(null, Typeface.BOLD);
-        listTitleTextView.setText(listTitle);
-        return convertView;
-    }
-
-    @Override
-    public boolean hasStableIds() {
-        return false;
-    }
-
-    @Override
-    public boolean isChildSelectable(int listPosition, int expandedListPosition) {
-        return true;
-    }
 }
+
+

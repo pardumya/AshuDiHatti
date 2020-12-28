@@ -152,6 +152,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         try {
                             JSONArray heroArray = new JSONArray(response);
                             int Count=0;
+
+
+
 //                            List<String> demo = new ArrayList<>();
 //
 //                            for (int i = 0; i < heroArray.length(); i++) {
@@ -175,6 +178,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //                            }
 //
 //                            Log.d("datta", String.valueOf(number));
+
+
+
 
                             for (int i = 0; i < heroArray.length(); i++) {
                                 JSONObject heroObject = heroArray.getJSONObject(i);

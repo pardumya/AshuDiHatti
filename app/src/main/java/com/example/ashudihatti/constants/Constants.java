@@ -2,6 +2,15 @@ package com.example.ashudihatti.constants;
 
 public class Constants {
 
+
+    //sub_category_type api
+    public static String subtype_category_api = "http://ashudihatti.in/rohar/tech/ashu/di/hatti/api/subcat_type/";
+    //category api
+    public static String category_api = "http://ashudihatti.in/rohar/tech/ashu/di/hatti/api/category/";
+    //subcategory api
+    public static String subcategory_api = "http://ashudihatti.in/rohar/tech/ashu/di/hatti/api/sub_category/";
+
+
     //product api
     public static String product_api = "http://ashudihatti.in/rohar/tech/ashu/di/hatti/api/product/";
     //contact-us api

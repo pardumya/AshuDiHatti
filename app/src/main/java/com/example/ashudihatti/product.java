@@ -37,6 +37,7 @@ public class product extends AppCompatActivity implements View.OnClickListener{
     RecyclerView product_recycler_View;
     List<String> products = new ArrayList<>();
     List<product_info_data> product_list = new ArrayList<>();
+    String prodata[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +51,18 @@ public class product extends AppCompatActivity implements View.OnClickListener{
         product_heading = findViewById(R.id.product_heading);
         //Get-Intent
         Intent intent = getIntent();
-
+        prodata =  intent.getStringArrayExtra("ProductData");
+        if(prodata==null)
+        {
+            get_date_product(intent.getStringExtra("date"));
+        }
+        else
+        {
+            get_product(prodata);
+        }
         //On Click
         product_back_button.setOnClickListener(this);;
 
-        get_date_product(intent.getStringExtra("date"));
     }
 
     public void get_date_product(final String date){
@@ -77,7 +85,7 @@ public class product extends AppCompatActivity implements View.OnClickListener{
                                 }
                             }
 
-                            get_product();
+                            get_product_for_fb();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -96,7 +104,7 @@ public class product extends AppCompatActivity implements View.OnClickListener{
         requestQueue.add(stringRequest);
     }
 
-    private void get_product() {
+    private void get_product_for_fb() {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.product_api,
                 new Response.Listener<String>() {
                     @Override
@@ -138,6 +146,66 @@ public class product extends AppCompatActivity implements View.OnClickListener{
                                         break;
                                     }
                                 }
+                            }
+
+                            product_adapter adapter = new product_adapter(product.this, product_list);
+                            product_recycler_View.setAdapter(adapter);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(product.this);
+
+        requestQueue.add(stringRequest);
+    }
+
+    private void get_product(String data[]) {
+        String apicat = "";
+        if(data!=null)
+        {
+            apicat = "?category="+data[0]+"&sub_category="+data[1]+"&subcat_type="+data[2];
+        }
+        Log.d("checkdata",""+apicat);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.product_api+apicat,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONArray heroArray = new JSONArray(response);
+
+                            for (int i = 0; i < heroArray.length(); i++) {
+                                JSONObject heroObject = heroArray.getJSONObject(i);
+                                        List<String> color = new ArrayList<>();
+                                        List<String> images = new ArrayList<>();
+
+                                        color.add(heroObject.getString("color"));
+
+                                        images.add(heroObject.getString("image1"));
+                                        images.add(heroObject.getString("image2"));
+                                        images.add(heroObject.getString("image3"));
+                                        images.add(heroObject.getString("image4"));
+
+                                        String product_url_id = heroObject.getString("url");
+                                        String[] product_url_id_data = product_url_id.split("/");
+
+                                        String product_category = heroObject.getString("category");
+                                        String[] product_category_data = product_category.split("/");
+
+                                        String product_subcategory = heroObject.getString("subcategory");
+                                        String[] product_subcategory_data = product_subcategory.split("/");
+
+                                        product_info_data home_info = new product_info_data(product_url_id_data[10],heroObject.getString("name"),heroObject.getString("sr_no"),product_category_data[10],product_subcategory_data[10],heroObject.getString("subcat_type"),heroObject.getString("lable"),color,heroObject.getString("price"),heroObject.getString("discount_price"),heroObject.getString("type"),heroObject.getString("description"),heroObject.getString("specification"),heroObject.getString("rating"),heroObject.getString("stock"),images);
+                                        product_list.add(home_info);
                             }
 
                             product_adapter adapter = new product_adapter(product.this, product_list);
